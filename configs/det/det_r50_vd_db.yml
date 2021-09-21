@@ -1,10 +1,10 @@
 Global:
   use_gpu: true
-  epoch_num: 1200
+  epoch_num: 2000
   log_smooth_window: 20
-  print_batch_step: 10
+  print_batch_step: 20
   save_model_dir: ./output/det_r50_vd/
-  save_epoch_step: 1200
+  save_epoch_step: 1000
   # evaluation is run every 2000 iterations
   eval_batch_step: [0,2000]
   cal_metric_during_train: False
@@ -51,7 +51,7 @@ PostProcess:
   name: DBPostProcess
   thresh: 0.3
   box_thresh: 0.7
-  max_candidates: 1000
+  max_candidates: 5000
   unclip_ratio: 1.5
 
 Metric:
