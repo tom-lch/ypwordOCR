@@ -160,8 +160,7 @@ class ProjectXHead(nn.Layer):
         # 不在使用自适应阈值图
         self.thresh = ThreshHead(in_channels, thresh_name_list)
 
-    def step_function(self, x):
-        y = x
+    def step_function(self, x, y):
         # 将特征图进行划分，如果特征较为明显，使用这块区域中的均值>0.5 使用1-均值，否则使用均值填充。
         # 为了便于求阈值，将图像划分成若干个子图
         paddle.to_tensor()
@@ -173,6 +172,6 @@ class ProjectXHead(nn.Layer):
             return {'maps': shrink_maps}
 
         threshold_maps = self.thresh(x)
-        binary_maps = self.step_function(shrink_maps)
+        binary_maps = self.step_function(shrink_maps, threshold_maps)
         y = paddle.concat([threshold_maps, binary_maps], axis=1)
         return {'maps': y}
