@@ -22,6 +22,7 @@ import copy
 __all__ = ['build_post_process']
 
 from .db_postprocess import DBPostProcess, DistillationDBPostProcess
+from .projectx_postprocess import ProjectXPostProcess, DistillationProjectXPostProcess
 from .east_postprocess import EASTPostProcess
 from .sast_postprocess import SASTPostProcess
 from .rec_postprocess import CTCLabelDecode, AttnLabelDecode, SRNLabelDecode, DistillationCTCLabelDecode, \
@@ -32,10 +33,10 @@ from .pg_postprocess import PGPostProcess
 
 def build_post_process(config, global_config=None):
     support_dict = [
-        'DBPostProcess', 'EASTPostProcess', 'SASTPostProcess', 'CTCLabelDecode',
+        'DBPostProcess', 'DBPostProcess', 'EASTPostProcess', 'SASTPostProcess', 'CTCLabelDecode',
         'AttnLabelDecode', 'ClsPostProcess', 'SRNLabelDecode', 'PGPostProcess',
         'DistillationCTCLabelDecode', 'TableLabelDecode',
-        'DistillationDBPostProcess'
+        'DistillationDBPostProcess', 'DistillationProjectXPostProcess'
     ]
 
     config = copy.deepcopy(config)

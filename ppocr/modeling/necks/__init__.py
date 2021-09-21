@@ -14,15 +14,17 @@
 
 __all__ = ['build_neck']
 
+from .db_fpn import DBFPN
+from .projectx_fpn import ProjectXFPN
+from .east_fpn import EASTFPN
+from .sast_fpn import SASTFPN
+from .rnn import SequenceEncoder
+from .pg_fpn import PGFPN
+from .table_fpn import TableFPN
 
 def build_neck(config):
-    from .db_fpn import DBFPN
-    from .east_fpn import EASTFPN
-    from .sast_fpn import SASTFPN
-    from .rnn import SequenceEncoder
-    from .pg_fpn import PGFPN
-    from .table_fpn import TableFPN
-    support_dict = ['DBFPN', 'EASTFPN', 'SASTFPN', 'SequenceEncoder', 'PGFPN', 'TableFPN']
+
+    support_dict = ['DBFPN', 'ProjectXFPN', 'EASTFPN', 'SASTFPN', 'SequenceEncoder', 'PGFPN', 'TableFPN']
 
     module_name = config.pop('name')
     assert module_name in support_dict, Exception('neck only support {}'.format(
