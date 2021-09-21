@@ -55,29 +55,25 @@ class ProjectXFPN(nn.Layer):
         self.p5_conv = nn.Conv2D(
             in_channels=self.out_channels,
             out_channels=self.out_channels // 4,
-            kernel_size=3,
-            padding=1,
+            kernel_size=1,
             weight_attr=ParamAttr(initializer=weight_attr),
             bias_attr=False)
         self.p4_conv = nn.Conv2D(
             in_channels=self.out_channels,
             out_channels=self.out_channels // 4,
-            kernel_size=3,
-            padding=1,
+            kernel_size=1,
             weight_attr=ParamAttr(initializer=weight_attr),
             bias_attr=False)
         self.p3_conv = nn.Conv2D(
             in_channels=self.out_channels,
             out_channels=self.out_channels // 4,
-            kernel_size=3,
-            padding=1,
+            kernel_size=1,
             weight_attr=ParamAttr(initializer=weight_attr),
             bias_attr=False)
         self.p2_conv = nn.Conv2D(
             in_channels=self.out_channels,
             out_channels=self.out_channels // 4,
-            kernel_size=3,
-            padding=1,
+            kernel_size=1,
             weight_attr=ParamAttr(initializer=weight_attr),
             bias_attr=False)
 
@@ -100,6 +96,7 @@ class ProjectXFPN(nn.Layer):
         p4 = self.p4_conv(out4)
         p3 = self.p3_conv(out3)
         p2 = self.p2_conv(out2)
+        
         p5 = F.upsample(p5, scale_factor=8, mode="nearest", align_mode=1)
         p4 = F.upsample(p4, scale_factor=4, mode="nearest", align_mode=1)
         p3 = F.upsample(p3, scale_factor=2, mode="nearest", align_mode=1)
